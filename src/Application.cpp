@@ -1,24 +1,20 @@
 #include "Application.h"
 
-#include "raylib.h"
-
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
 #endif
 
 namespace Snake
 {
-    Application::Application(const ApplicationSpecification& spec) : m_specification(spec)  // NOLINT(modernize-pass-by-value)
-    {
-    }
+    Application::Application(const ApplicationSpecification& spec) : m_specification(spec) { }
 
-    void Application::OnUpdate()
+    void Application::OnUpdate() const
     {
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(Colors::Green);
 
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        m_game->OnUpdate();
 
         EndDrawing();
     }
@@ -31,6 +27,8 @@ namespace Snake
         emscripten_set_main_loop([this]() { OnUpdate(); }, 0, 1);
 #else
         SetTargetFPS(60);
+
+        m_game = std::make_unique<Game>();
 
         while (!WindowShouldClose()) // Detect window close button or ESC key
         {
