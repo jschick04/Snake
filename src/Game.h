@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Entities/Food.h"
+#include "Entities/Snake.h"
 
 namespace Snake
 {
@@ -10,11 +11,11 @@ namespace Snake
         static constexpr int CellCount = 25;
         static constexpr int CellSize = 30;
 
-        Game();
-
-        void OnUpdate() const;
+        void OnUpdate();
+        void OnRender() const;
 
     private:
-        Entities::Food m_food;
+        Entities::Food m_food = Entities::Food();
+        Entities::Snake m_snake = Entities::Snake();
     };
 }

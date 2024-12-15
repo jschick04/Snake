@@ -2,13 +2,14 @@
 
 namespace Snake
 {
-    Game::Game()
+    void Game::OnUpdate()
     {
-        m_food = Entities::Food();
+        m_snake.OnUpdate();
     }
 
-    void Game::OnUpdate() const
+    void Game::OnRender() const
     {
-        m_food.Draw();
+        m_food.OnRender();
+        m_snake.OnRender();
     }
 }

@@ -15,6 +15,7 @@ namespace Snake
         ClearBackground(Colors::Green);
 
         m_game->OnUpdate();
+        m_game->OnRender();
 
         EndDrawing();
     }

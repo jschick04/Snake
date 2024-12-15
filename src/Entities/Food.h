@@ -9,7 +9,7 @@ namespace Snake::Entities
 
         Food();
 
-        void Draw() const;
+        void OnRender() const;
 
     private:
         static Vector2 GetRandomPosition();

@@ -20,7 +20,7 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif()
 
 # Our Project
-add_executable(${PROJECT_NAME} "src/main.cpp" "src/Application.h" "src/Application.cpp" "src/Entities/Food.h" "src/Entities/Food.cpp" "src/Core/Colors.h" "src/gpch.h"  "src/Game.h" "src/Game.cpp")
+add_executable(${PROJECT_NAME} "src/main.cpp" "src/Application.h" "src/Application.cpp" "src/Entities/Food.h" "src/Entities/Food.cpp" "src/Core/Colors.h" "src/gpch.h"  "src/Game.h" "src/Game.cpp" "src/Entities/Snake.h" "src/Entities/Snake.cpp")
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
 target_include_directories(${PROJECT_NAME} PRIVATE "src")

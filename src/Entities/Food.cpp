@@ -8,7 +8,7 @@ namespace Snake::Entities
         position = GetRandomPosition();
     }
 
-    void Food::Draw() const
+    void Food::OnRender() const
     {
         DrawRectangle(
             static_cast<int>(position.x) * Game::CellSize,
