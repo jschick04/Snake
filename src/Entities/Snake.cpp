@@ -15,30 +15,48 @@ namespace Snake::Entities
     {
         body = { Vector2(6, 9), Vector2(5, 9), Vector2(4, 9) };
         m_direction = { 1, 0 };
+        m_canChangeDirection = true;
         m_isEating = false;
         m_isMoving = false;
     }
 
     void Snake::OnUpdate()
     {
-        if (IsKeyPressed(KEY_UP) && m_direction.y != 1)
+        switch (GetKeyPressed())
         {
-            // TODO: Direction should only change once per move
-            // If you hit directions quick enough the snake will go back on itself
-            m_direction = { 0, -1 };
-        }
-        else if (IsKeyPressed(KEY_DOWN) && m_direction.y != -1)
-        {
-            m_direction = { 0, 1 };
-        }
-        else if (IsKeyPressed(KEY_LEFT) && m_direction.x != 1)
-        {
-            m_direction = { -1, 0 };
-        }
-        else if (IsKeyPressed(KEY_RIGHT) && m_direction.x != -1)
-        {
-            m_direction = { 1, 0 };
-            m_isMoving = true;
+            case KEY_UP:
+                if (m_direction.y != 1 && m_canChangeDirection)
+                {
+                    m_direction = { 0, -1 };
+                    m_isMoving = true;
+                    m_canChangeDirection = false;
+                }
+                break;
+            case KEY_DOWN:
+                if (m_direction.y != -1 && m_canChangeDirection)
+                {
+                    m_direction = { 0, 1 };
+                    m_isMoving = true;
+                    m_canChangeDirection = false;
+                }
+                break;
+            case KEY_LEFT:
+                if (m_direction.x != 1 && m_canChangeDirection)
+                {
+                    m_direction = { -1, 0 };
+                    m_canChangeDirection = false;
+                }
+                break;
+            case KEY_RIGHT:
+                if (m_direction.x != -1 && m_canChangeDirection)
+                {
+                    m_direction = { 1, 0 };
+                    m_isMoving = true;
+                    m_canChangeDirection = false;
+                }
+                break;
+            default:
+                break;
         }
 
         if (m_isEating)
@@ -56,8 +74,8 @@ namespace Snake::Entities
         for (unsigned int i = 0; i < body.size(); i++)
         {
             DrawRectangle(
-                static_cast<int>(body[i].x) * Game::CellSize,
-                static_cast<int>(body[i].y) * Game::CellSize,
+                Game::Offset + static_cast<int>(body[i].x) * Game::CellSize,
+                Game::Offset + static_cast<int>(body[i].y) * Game::CellSize,
                 Game::CellSize,
                 Game::CellSize,
                 Colors::DarkGreen);
@@ -71,6 +89,7 @@ namespace Snake::Entities
         if (const double currentTime = GetTime(); currentTime - m_lastUpdateTime >= interval)
         {
             m_lastUpdateTime = currentTime;
+            m_canChangeDirection = true;
 
             return true;
         }

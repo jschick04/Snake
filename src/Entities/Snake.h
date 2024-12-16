@@ -16,6 +16,7 @@ namespace Snake::Entities
 
     private:
         Vector2 m_direction = Vector2(1, 0);
+        bool m_canChangeDirection = true;
         bool m_isEating = false;
         bool m_isMoving = true;
         double m_lastUpdateTime = 0;

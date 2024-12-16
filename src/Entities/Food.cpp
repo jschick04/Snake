@@ -16,8 +16,8 @@ namespace Snake::Entities
     void Food::OnRender() const
     {
         DrawRectangle(
-            static_cast<int>(position.x) * Game::CellSize,
-            static_cast<int>(position.y) * Game::CellSize,
+            Game::Offset + static_cast<int>(position.x) * Game::CellSize,
+            Game::Offset + static_cast<int>(position.y) * Game::CellSize,
             Game::CellSize,
             Game::CellSize,
             Colors::DarkGreen);

@@ -8,8 +8,8 @@ namespace Snake
 {
     struct ApplicationSpecification
     {
-        int Height = Game::CellCount * Game::CellSize;
-        int Width = Game::CellCount * Game::CellSize;
+        int Height = 2 * Game::Offset + Game::CellCount * Game::CellSize;
+        int Width = 2 * Game::Offset + Game::CellCount * Game::CellSize;
         std::string Title = "Snake";
     };
 
