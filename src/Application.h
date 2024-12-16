@@ -1,6 +1,5 @@
 #pragma once
 
-#include <memory>
 #include <string>
 
 #include "Game.h"
@@ -19,11 +18,11 @@ namespace Snake
     public:
         explicit Application(const ApplicationSpecification& spec = ApplicationSpecification());
 
-        void OnUpdate() const;
+        void OnUpdate();
         void Run();
 
     private:
-        std::unique_ptr<Game> m_game;
+        Game m_game = Game();
         ApplicationSpecification m_specification;
     };
 }

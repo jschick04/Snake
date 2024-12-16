@@ -17,5 +17,9 @@ namespace Snake
     private:
         Entities::Food m_food = Entities::Food();
         Entities::Snake m_snake = Entities::Snake();
+
+        [[nodiscard]] bool CanEatFood() const;
+        [[nodiscard]] bool IsGameOver() const;
+        void Reset();
     };
 }

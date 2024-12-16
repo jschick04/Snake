@@ -9,6 +9,7 @@ namespace Snake::Entities
 
         Food();
 
+        void Respawn();
         void OnRender() const;
 
     private:

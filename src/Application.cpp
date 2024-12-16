@@ -8,14 +8,14 @@ namespace Snake
 {
     Application::Application(const ApplicationSpecification& spec) : m_specification(spec) { }
 
-    void Application::OnUpdate() const
+    void Application::OnUpdate()
     {
         BeginDrawing();
 
         ClearBackground(Colors::Green);
 
-        m_game->OnUpdate();
-        m_game->OnRender();
+        m_game.OnUpdate();
+        m_game.OnRender();
 
         EndDrawing();
     }
@@ -28,8 +28,6 @@ namespace Snake
         emscripten_set_main_loop([this]() { OnUpdate(); }, 0, 1);
 #else
         SetTargetFPS(60);
-
-        m_game = std::make_unique<Game>();
 
         while (!WindowShouldClose()) // Detect window close button or ESC key
         {

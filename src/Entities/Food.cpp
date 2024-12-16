@@ -8,6 +8,11 @@ namespace Snake::Entities
         position = GetRandomPosition();
     }
 
+    void Food::Respawn()
+    {
+        position = GetRandomPosition();
+    }
+
     void Food::OnRender() const
     {
         DrawRectangle(
